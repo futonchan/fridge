@@ -1,4 +1,7 @@
 ## 概要
+冷蔵庫に入れる際に野菜を画像から分類する
+モデルはEfficientNet(https://github.com/lukemelas/EfficientNet-PyTorch)
+判定にはラズパイか、ラズパイから別PCに転送して推論して、スマホアプリでその結果を確認できるようにする
 画像分類転移学習EfficientNet
 pip でEfficientNet入れてる、めちゃ便利
 
@@ -32,6 +35,10 @@ bees                                                                        (37.
 https://qiita.com/sugulu_Ogawa_ISID/items/fa0ea622979507cdad6b
 https://qiita.com/sugulu_Ogawa_ISID/items/c0e8a5e6b177bfe05e99
 
+# 参考URL
+https://github.com/aws-samples/smart-cooler
+https://dev.classmethod.jp/articles/smart-cooler-012/
+https://aws.amazon.com/jp/blogs/news/smart-cooler/
 
 ## ブランチモデル
 
