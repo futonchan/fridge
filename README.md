@@ -27,3 +27,7 @@ Loaded pretrained weights for efficientnet-b0
 ants                                                                        (62.08%)
 bees                                                                        (37.92%)
 ```
+
+# なんか作るときに参考にするポエム
+https://qiita.com/sugulu_Ogawa_ISID/items/fa0ea622979507cdad6b
+https://qiita.com/sugulu_Ogawa_ISID/items/c0e8a5e6b177bfe05e99

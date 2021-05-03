@@ -196,7 +196,7 @@ def main():
 
     model = train_model(model, criterion, optimizer, exp_lr_scheduler,
                         num_epochs=25)
-    save_path = "test.pth"
+    save_path = "./weights/test.pth"
     torch.save(model.state_dict(),save_path) # 推奨される方 重みのみ
     # torch.save(net,save_path) # モデル込で保存 別環境で失敗するかも
     print("Saved model to " + save_path)
