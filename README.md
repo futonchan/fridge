@@ -40,6 +40,12 @@ https://github.com/aws-samples/smart-cooler
 https://dev.classmethod.jp/articles/smart-cooler-012/
 https://aws.amazon.com/jp/blogs/news/smart-cooler/
 
+# フードロス系URL
+http://www.fao.org/3/i2697o/i2697o.pdf
+果実・野菜類がアジアで郡を抜いて多い→野菜、果実の期限をチェック
+
+http://www.fao.org/home/en/
+
 ## ブランチモデル
 
 [GitLab Flow](https://postd.cc/gitlab-flow/) を採用します。
