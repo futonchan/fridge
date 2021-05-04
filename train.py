@@ -165,6 +165,7 @@ def main():
     image_datasets = {x:  torchvision.datasets.ImageFolder(os.path.join(data_dir, x),
                                             transform=data_transforms[x])
                     for x in ['train', 'val']}
+    print(image_datasets)
     dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4,
                                                 shuffle=True, num_workers=4)
                 for x in ['train', 'val']}
@@ -173,7 +174,7 @@ def main():
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print(dataset_sizes)
-    print(class_names)
+    print(class_names) # ['ants', 'bees']
     print(device)
 
     # Classify with EfficientNet
