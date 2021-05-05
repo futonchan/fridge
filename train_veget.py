@@ -1,10 +1,11 @@
 import time
 import os
 import copy
+
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
-
+from matplotlib.ticker import MaxNLocator # matplotlib横軸を整数で表示する用
 import torch
 import torchvision
 from torchvision import transforms
@@ -16,29 +17,29 @@ from torch.optim import lr_scheduler
 
 
 # グラフを描画する関数の定義
-# def save_training_graph(train_acc,val_acc,train_loss,val_loss):
-#     # グラフ全体サイズ大きくする
-#     plt.rcParams['figure.figsize'] = (15.0, 15.0)
-#     # epoch数の配列numpyで
-#     x = np.arange(1,NUM_EPOCHS+1)
-#     # Figureの初期化
-#     fig = plt.figure()
-#     # accuracyグラフ
-#     acc_ax = fig.add_subplot(2,2,1,ylim=(0,1),title="model_accuracy",xlabel="epoch",ylabel="accuracy")
-#     acc_ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-#     acc_ax.plot(x, train_acc, label="train_acc", marker="o")
-#     acc_ax.plot(x, val_acc, label="val_acc", marker="o")
-#     # lossグラフ
-#     loss_ax = fig.add_subplot(2,2,2,title="model_loss",xlabel="epoch",ylabel="loss")
-#     loss_ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-#     loss_ax.plot(x, train_loss, label="train_loss", marker="o")
-#     loss_ax.plot(x, val_loss, label="val_loss", marker="o")
-#     # 凡例の表示
-#     acc_ax.legend()
-#     loss_ax.legend()
-#     # プロット カレントディレクトリに保存
-#     plt.savefig('figure_crossval{}.png')
-#     print("Saved Figure")
+def save_training_graph(train_acc,val_acc,train_loss,val_loss,num_epochs):
+    # グラフ全体サイズ大きくする
+    plt.rcParams['figure.figsize'] = (15.0, 15.0)
+    # epoch数の配列numpyで
+    x = np.arange(1,num_epochs+1)
+    # Figureの初期化
+    fig = plt.figure()
+    # accuracyグラフ
+    acc_ax = fig.add_subplot(2,2,1,ylim=(0,1),title="model_accuracy",xlabel="epoch",ylabel="accuracy")
+    acc_ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+    acc_ax.plot(x, train_acc, label="train_acc", marker="o")
+    acc_ax.plot(x, val_acc, label="val_acc", marker="o")
+    # lossグラフ
+    loss_ax = fig.add_subplot(2,2,2,title="model_loss",xlabel="epoch",ylabel="loss")
+    loss_ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+    loss_ax.plot(x, train_loss, label="train_loss", marker="o")
+    loss_ax.plot(x, val_loss, label="val_loss", marker="o")
+    # 凡例の表示
+    acc_ax.legend()
+    loss_ax.legend()
+    # プロット カレントディレクトリに保存
+    plt.savefig('training_graph.png')
+    print("Saved Figure")
 
 
 
@@ -110,12 +111,15 @@ def main():
 
     # Decay LR by a factor of 0.1 every 7 epochs
     scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
-    NUM_EPOCHS = 25
+    NUM_EPOCHS = 3
 
     since = time.time()
 
     best_model_wts = copy.deepcopy(model.state_dict())
     best_acc = 0.0
+
+    acc_history = {x: list() for x in ['train', 'val']}
+    loss_history = {x: list() for x in ['train', 'val']}
 
     for epoch in range(NUM_EPOCHS):
         print('Epoch {}/{}'.format(epoch, NUM_EPOCHS - 1))
@@ -162,6 +166,9 @@ def main():
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(
                 phase, epoch_loss, epoch_acc))
 
+            acc_history[phase].append(epoch_acc)
+            loss_history[phase].append(epoch_loss)
+
             # deep copy the model
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
@@ -181,6 +188,8 @@ def main():
     torch.save(model.state_dict(),save_path) # 推奨される方 重みのみ
     # torch.save(net,save_path) # モデル込で保存 別環境で失敗するかも
     print("Saved model to " + save_path)
+
+    save_training_graph(acc_history["train"], acc_history["val"], loss_history["train"], loss_history["val"], NUM_EPOCHS)
 
 
 # multiProcessing使うときにはこれ書く必要があるらしいよ
