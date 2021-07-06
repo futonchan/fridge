@@ -1,0 +1,6 @@
+apple
+beansprouts
+carrots
+cucumber
+grape
+greenpepper

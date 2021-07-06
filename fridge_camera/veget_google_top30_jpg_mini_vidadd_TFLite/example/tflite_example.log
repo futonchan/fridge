@@ -1,0 +1,15 @@
+('grape', 15)
+距離：5.457801818847656 cm
+距離：5.084202289581299 cm
+距離：5.0801414251327515 cm
+距離：5.0679588317871085 cm
+距離：5.039532780647278 cm
+距離：5.096384882926941 cm
+距離：38.75689029693603 cm
+距離：39.97921049594879 cm
+距離：8.121728897094727 cm
+距離：10.022213459014893 cm
+Predicted: {'predictions': [{'label': 'grape', 'confidence': 0.9999983310699463}, {'label': 'cucumber', 'confidence': 1.6781863223513938e-06}, {'label': 'greenpepper', 'confidence': 1.7725303447235774e-09}, {'label': 'apple', 'confidence': 1.0926578530856546e-09}, {'label': 'beansprouts', 'confidence': 5.698594374159427e-11}, {'label': 'carrots', 'confidence': 1.4264056515805867e-12}]}
+top_veget_name : grape
+('grape', 16)
+Copyed maindb.db to maindb_copy.db.
