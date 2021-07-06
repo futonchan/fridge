@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FridgeChecker2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kao-Ct-NtH">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="cYl-MT-cqb">
+                                    <rect key="frame" x="0.0" y="136" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="pushVeget:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7PK-fq-emo"/>
+                                    </connections>
+                                </button>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VegetTableViewCell" rowHeight="80" id="Jk0-fh-DFr" customClass="VegetTableViewCell" customModule="FridgeChecker2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jk0-fh-DFr" id="yoK-ZU-FPP">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJF-Pk-WEI">
+                                                    <rect key="frame" x="329" y="0.0" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="cvO-Dt-r7S"/>
+                                                        <constraint firstAttribute="height" constant="80" id="fuE-il-pmF"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-bZ-WuB">
+                                                    <rect key="frame" x="20" y="10" width="71" height="36"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yL-u6-Pwe">
+                                                    <rect key="frame" x="40" y="46" width="210" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="273" id="Awe-LG-QqN"/>
+                                                        <constraint firstAttribute="height" constant="29" id="dHr-HC-ONw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTz-9y-iOz" userLabel="Veget Num">
+                                                    <rect key="frame" x="285" y="53" width="23" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="1yL-u6-Pwe" secondAttribute="bottom" constant="5" id="KRa-5Z-qyp"/>
+                                                <constraint firstItem="fp1-bZ-WuB" firstAttribute="leading" secondItem="yoK-ZU-FPP" secondAttribute="leading" constant="20" id="Lyd-Ty-vhQ"/>
+                                                <constraint firstItem="1yL-u6-Pwe" firstAttribute="leading" secondItem="yoK-ZU-FPP" secondAttribute="leading" constant="40" id="XdN-EV-hxe"/>
+                                                <constraint firstAttribute="trailing" secondItem="hJF-Pk-WEI" secondAttribute="trailing" constant="5" id="iI1-Fo-JZ0"/>
+                                                <constraint firstItem="fp1-bZ-WuB" firstAttribute="top" secondItem="yoK-ZU-FPP" secondAttribute="top" constant="10" id="mNe-7g-sYZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="vegetDate" destination="1yL-u6-Pwe" id="PRN-HT-YGd"/>
+                                            <outlet property="vegetImageView" destination="hJF-Pk-WEI" id="U5f-28-vAF"/>
+                                            <outlet property="vegetNameLabel" destination="fp1-bZ-WuB" id="koI-fq-CNj"/>
+                                            <outlet property="vegetNumLabel" destination="YTz-9y-iOz" id="aDb-Jf-bMM"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Kao-Ct-NtH" secondAttribute="bottom" id="47s-E8-tuP"/>
+                            <constraint firstItem="Kao-Ct-NtH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="A8f-am-x3Z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kao-Ct-NtH" secondAttribute="trailing" id="qdG-wm-qzO"/>
+                            <constraint firstItem="Kao-Ct-NtH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uAt-wR-zG4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myButton" destination="cYl-MT-cqb" id="IGA-Op-767"/>
+                        <outlet property="myTableView" destination="Kao-Ct-NtH" id="yaQ-Dm-Wwe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
