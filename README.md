@@ -1,35 +1,13 @@
 ## 概要
-冷蔵庫に入れる際に野菜を画像から分類する
-モデルはEfficientNet(https://github.com/lukemelas/EfficientNet-PyTorch)
-判定にはラズパイか、ラズパイから別PCに転送して推論して、スマホアプリでその結果を確認できるようにする
-画像分類転移学習EfficientNet
-pip でEfficientNet入れてる、めちゃ便利
+冷蔵庫に入れる際に野菜を画像から分類する。
+カメラ→AI(サーバー）→DB→アプリ
 
-## データ
-- ありとはちweights(EfficientNetの重みはpipのパッケージで保存されてる)
-https://drive.google.com/file/d/1YBYy7-dJB26QVxNAZNQ61MQqMetkmhIG/view?usp=sharing
+## フォルダ
+- fridge_camera ... サーバー
+- FridgeChecker ... アプリ
 
-- ありとはちデータセット(data/hymenoptera_data/train/...jpgとなるように配置)
-https://drive.google.com/file/d/13gFZjbF96OZSmU6W_JTMJ538oqKa7TxD/view?usp=sharing
 ## 学習
-EfficientNetで
-0～7まで
-
-## テスト
-`onlytest.py`実行結果
-
-```
-using device: cuda:0
-GeForce RTX 2070
-Memory Usage:
-Allocated: 0.0 GB
-Cached:    0.0 GB
-Loaded pretrained weights for efficientnet-b0
-['ants', 'bees']
------
-ants                                                                        (62.08%)
-bees                                                                        (37.92%)
-```
+MobileNetV2で。
 
 # なんか作るときに参考にするポエム
 https://qiita.com/sugulu_Ogawa_ISID/items/fa0ea622979507cdad6b
@@ -48,7 +26,7 @@ http://www.fao.org/home/en/
 
 ## ブランチモデル
 
-[GitLab Flow](https://postd.cc/gitlab-flow/) を採用します。
+[GitHUb Flow](https://postd.cc/gitlab-flow/) を採用します。
 - main への直接pushは禁止
   - 開発用の各topicブランチを merge することで main は変化していきます
 - 開発topicブランチは main から作成
