@@ -144,56 +144,60 @@ def main():
 
     fridge_max = 40
 
-    cap = cv2.VideoCapture(0)
-    model = TFLiteModel(model_dir)
+    cap = cv2.VideoCapture(0) # カメラ起動
+    model = TFLiteModel(model_dir) # モデル読み込み
     model.load()
 
     try:
         while True:
+            # 距離を測定する
             while True:
                 ret, frame = cap.read()
                 print(ret)
                 distance_cm = get_distance(GPIO_TRIG, GPIO_ECHO)
                 if distance_cm > fridge_max:
                     print("Out of fridge_max")
-                elif distance_cm > 9 and distance_cm < 19:
+                elif distance_cm > 9 and distance_cm < 19: # 9cm~19cmのとき、画像推論する
                     cv2.imwrite("test.jpg", frame)
                     print("距離：{0} cm".format(distance_cm))
                     break
                 else:
                     print("距離：{0} cm".format(distance_cm))
                 time.sleep(1)
-
+            # 画像推論
             image = cv2pil(frame)
             outputs = model.predict(image)
             print(f"Predicted: {outputs}")
 
+            # 1位の推論結果をDBに保存
             top_veget_name = outputs["predictions"][0]["label"]
             print("top_veget_name : {}".format(top_veget_name))
-            cur.execute('SELECT count FROM Vegets WHERE veget = ? ', (top_veget_name,)) #...[7]
-            row = cur.fetchone() #...[8]
-            if row is None: #...[9]
+            cur.execute('SELECT count FROM Vegets WHERE veget = ? ', (top_veget_name,)) #...[7] SQLiteで1位の推論結果の野菜を検索
+            row = cur.fetchone() #...[8] 1つ取り出し
+            if row is None: #...[9] もしDBにない野菜名だったとき
                 cur.execute('''INSERT INTO Vegets (veget, count)
-                        VALUES (?, 1)''', (top_veget_name,))
-            else: #...[10]
+                        VALUES (?, 1)''', (top_veget_name,)) # (野菜名, 1) を新しくINSERT
+            else: #...[10] DBにある野菜だったとき
                 cur.execute('UPDATE Vegets SET count = count + 1 WHERE veget = ?',
-                            (top_veget_name,))
-            conn.commit() #...[11]
+                            (top_veget_name,)) # countに1つ追加。
+            conn.commit() #...[11] 結果判明
 
-            cur.execute("SELECT * FROM Vegets")
+            cur.execute("SELECT * FROM Vegets") # Vegetsテーブル確認
             print(cur.fetchall()) #...[8]
 
+            # 出力したDBを、apacheサーバーのDBにコピーする
             shutil.copy(INPUT_DBNAME, OUTPUT_DBNAME)
             print("Copyed {0} to {1}.".format(INPUT_DBNAME, OUTPUT_DBNAME))
 
             sys.stdout.flush() # 明示的にflush
 
+            # ブザー音を1秒間鳴らす
             pi.hardware_PWM(gpio_pin0, 523, 600000)
             time.sleep(1)
             pi.hardware_PWM(gpio_pin0, 0, 0)
 
 
-    finally:
+    finally: # Ctrl + Cで終了したとき（だった気がする）
         signal.signal(signal.SIGTERM, signal.SIG_IGN)
         signal.signal(signal.SIGINT, signal.SIG_IGN)
         pi.set_mode(gpio_pin0, pigpio.INPUT)
