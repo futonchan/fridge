@@ -1,5 +1,7 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
+import threading
+import time
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///testdb.sqlite"
@@ -34,4 +36,12 @@ def list_veget():
     return jsonify({'vegets': [veget.to_dict() for veget in vegets]})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+     api_thread = threading.Thread(name='rest_service', target=app.run, args=('0.0.0.0',), kwargs=dict(debug=False))
+     api_thread.start()
+#     app.run("0.0.0.0", debug=False)
+        
+     while True:
+        print("Main routine!")
+        time.sleep(1)
+
+     api_thread.join()
