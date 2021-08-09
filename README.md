@@ -2,6 +2,16 @@
 冷蔵庫に入れる際に野菜を画像から分類する。
 カメラ→AI(サーバー）→DB→アプリ
 
+## 動かすには
+venvのPython3でサーバー立てる
+```
+cd fridge_camera/veget_google_top30_jpg_mini_vidadd_TFLite/example
+source tflite-venv/bin/activate
+python3 main.py
+```
+
+終了... Ctrl+C 2回
+
 ## フォルダ
 - fridge_camera ... サーバー
 - FridgeChecker ... アプリ
