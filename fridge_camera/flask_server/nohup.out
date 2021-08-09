@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/shouc/prog/veget_class/fridge_camera/flask_server/test.py", line 2, in <module>
+    from flask_sqlalchemy import SQLAlchemy
+ModuleNotFoundError: No module named 'flask_sqlalchemy'
