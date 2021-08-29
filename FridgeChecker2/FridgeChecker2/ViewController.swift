@@ -12,11 +12,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         myTableView.dataSource = self // TableView使う時の必須1
         myTableView.delegate = self //TableView使う時の必須2
-        refreshGetVegetsData()
     }
     
     // サーバーURLからJSONとってエンコード
-    private func getJSONFromServer(accessUrl: String ,userCompletionHandler: @escaping (Vegets?, Error?) -> Void) {
+    private func getJSONFromServer(accessUrl: String ,userCompletionHandler: @escaping ([Veget]?, Error?) -> Void) {
         let session = URLSession.shared // セッション情報の取り出し -> Default設定のシングルトンオブジェクトをとってきてる
         
         if let url = URL(string: accessUrl) { // URLじゃない文字列のときnil返す. httpsじゃないときはplistでATSの設定をYESにする。
@@ -24,15 +23,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // こういうクロージャの書き方未だに理解できてない
             // let task = session.dataTask(with: url!) { data, response, error in <- こういうのもわからん
-            let task = session.dataTask(with: request, completionHandler: { // URLSessionのdataTaskメソッド。レスポンス受け取り準備
+            // URLSessionのdataTaskメソッド。レスポンス受け取り準備
+            let task = session.dataTask(with: request, completionHandler: {
                 (data:Data?, response: URLResponse?, error: Error?) in
-                
                 guard let data = data else {
                     fatalError("Error: None Data") // fatalErrorいつかやめる
                 }
                 // クラスの中でも一要素をEncodeしたいときどうする？
                 let decoder = JSONDecoder()
-                guard let jsonDecodedObject = try? decoder.decode(Vegets.self, from: data) else { // 「Vegets.self」で構造体のMetatypeにアクセス。Metatypeは(オブジェクト名).Typeで示されるオブジェクトの型情報。
+//                decoder.dateDecodingStrategy =
+                guard let jsonDecodedObject = try? decoder.decode([Veget].self, from: data) else { // 「Vegets.self」で構造体のMetatypeにアクセス。Metatypeは(オブジェクト名).Typeで示されるオブジェクトの型情報。
                     fatalError("Failed json Decode") // fatalErrorいつかやめる
                 }
                 userCompletionHandler(jsonDecodedObject,nil)
@@ -43,10 +43,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func refreshGetVegetsData() {
-        getJSONFromServer(accessUrl: "http://hiroki.mydns.jp:5000", userCompletionHandler: { vegetsJson, error in
+        let vegetAllGetURL = "https://6v5cialww3.execute-api.ap-northeast-1.amazonaws.com/beta/vegets"
+        getJSONFromServer(accessUrl: vegetAllGetURL, userCompletionHandler: { vegetsJson, error in
           if let vegetsJson = vegetsJson {
             self.listVegets.removeAll()
-            for v in vegetsJson.vegets {
+            for v in vegetsJson {
                 self.listVegets.append(v)
             }
           }
@@ -68,8 +69,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             fatalError("Dequeue failed: VegetTableViewCell.")
         }
         
-        let nameText = self.listVegets[indexPath.row].veget
+        let nameText = self.listVegets[indexPath.row].name
         let numVeget = self.listVegets[indexPath.row].count
+        let createdAt = self.listVegets[indexPath.row].created_at // 2021-08-25T04:11:33.22543, String
         cell.vegetNameLabel.text = nameText
         cell.vegetNumLabel.text = String(numVeget)
         cell.vegetImageView.image = UIImage(named: nameText)

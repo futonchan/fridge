@@ -14,6 +14,8 @@ struct Veget: Codable {
     var count: Int            // 個数
 }
 
+
+
 // json get
 // "veget"の中身だけとる(リストになってるjson) <- どうやって？
 // 下のやり方でパース
