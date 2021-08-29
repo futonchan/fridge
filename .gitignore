@@ -1,3 +1,4 @@
 *.pth
 data/
 weights/
+UserInterfaceState.xcuserstate
