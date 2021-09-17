@@ -15,12 +15,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // サーバーURLからJSONとってエンコード
-    private func getJSONFromServer(accessUrl: String ,userCompletionHandler: @escaping ([Veget]?, Error?) -> Void) {
+    private func getJSONFromServer(accessUrl: String ,userCompletionHandler: @escaping (GetJsonObject?, Error?) -> Void) {
         let session = URLSession.shared // セッション情報の取り出し -> Default設定のシングルトンオブジェクトをとってきてる
         
         if let url = URL(string: accessUrl) { // URLじゃない文字列のときnil返す. httpsじゃないときはplistでATSの設定をYESにする。
             let request = URLRequest(url: url)
-            
             // こういうクロージャの書き方未だに理解できてない
             // let task = session.dataTask(with: url!) { data, response, error in <- こういうのもわからん
             // URLSessionのdataTaskメソッド。レスポンス受け取り準備
@@ -32,7 +31,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 // クラスの中でも一要素をEncodeしたいときどうする？
                 let decoder = JSONDecoder()
 //                decoder.dateDecodingStrategy =
-                guard let jsonDecodedObject = try? decoder.decode([Veget].self, from: data) else { // 「Vegets.self」で構造体のMetatypeにアクセス。Metatypeは(オブジェクト名).Typeで示されるオブジェクトの型情報。
+                guard let jsonDecodedObject = try? decoder.decode(GetJsonObject.self, from: data) else { // 「Vegets.self」で構造体のMetatypeにアクセス。Metatypeは(オブジェクト名).Typeで示されるオブジェクトの型情報。
                     fatalError("Failed json Decode") // fatalErrorいつかやめる
                 }
                 userCompletionHandler(jsonDecodedObject,nil)
@@ -43,11 +42,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func refreshGetVegetsData() {
-        let vegetAllGetURL = "https://6v5cialww3.execute-api.ap-northeast-1.amazonaws.com/beta/vegets"
-        getJSONFromServer(accessUrl: vegetAllGetURL, userCompletionHandler: { vegetsJson, error in
-          if let vegetsJson = vegetsJson {
+        let vegetAllGetURL = "https://aywazn34hg.execute-api.ap-northeast-1.amazonaws.com/beta/vegets"
+        getJSONFromServer(accessUrl: vegetAllGetURL, userCompletionHandler: { getVegetsJson, error in
+          if let getVegetsJson = getVegetsJson {
             self.listVegets.removeAll()
-            for v in vegetsJson {
+            for v in getVegetsJson.Items {
                 self.listVegets.append(v)
             }
           }
@@ -71,9 +70,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let nameText = self.listVegets[indexPath.row].name
         let numVeget = self.listVegets[indexPath.row].count
-        let createdAt = self.listVegets[indexPath.row].created_at // 2021-08-25T04:11:33.22543, String
+        let inputDate = String2Datetime(strDate: self.listVegets[indexPath.row].input_date)
+        
         cell.vegetNameLabel.text = nameText
-        cell.vegetNumLabel.text = String(numVeget)
+        if let num = numVeget {
+            cell.vegetNumLabel.text = String(num)
+        } else {
+            cell.vegetNumLabel.text = ""
+        }
+        
+        cell.vegetDate.text = inputDate
+        if let expiryDate = self.listVegets[indexPath.row].expiry_date {
+            cell.vegetDate.text = inputDate + " 〜 " + String2Datetime(strDate: expiryDate)
+        }
         cell.vegetImageView.image = UIImage(named: nameText)
         return cell
     }
