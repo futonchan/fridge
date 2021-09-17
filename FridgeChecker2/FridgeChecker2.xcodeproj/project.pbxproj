@@ -7,17 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E003043326F4272500460057 /* TransformInputDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E003043226F4272500460057 /* TransformInputDate.swift */; };
 		E029E7FC2642FF5D00D3C4A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029E7FB2642FF5D00D3C4A4 /* AppDelegate.swift */; };
 		E029E7FE2642FF5D00D3C4A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029E7FD2642FF5D00D3C4A4 /* SceneDelegate.swift */; };
 		E029E8002642FF5D00D3C4A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029E7FF2642FF5D00D3C4A4 /* ViewController.swift */; };
 		E029E8032642FF5D00D3C4A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E029E8012642FF5D00D3C4A4 /* Main.storyboard */; };
 		E029E8052642FF5E00D3C4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E029E8042642FF5E00D3C4A4 /* Assets.xcassets */; };
 		E029E8082642FF5E00D3C4A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E029E8062642FF5E00D3C4A4 /* LaunchScreen.storyboard */; };
-		E029E8112643079500D3C4A4 /* Vegets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029E8102643079500D3C4A4 /* Vegets.swift */; };
+		E029E8112643079500D3C4A4 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029E8102643079500D3C4A4 /* json.swift */; };
 		E029E814264308DF00D3C4A4 /* VegetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029E813264308DF00D3C4A4 /* VegetTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E003043226F4272500460057 /* TransformInputDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformInputDate.swift; sourceTree = "<group>"; };
+		E003043526F42AF500460057 /* stringtest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = stringtest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E029E7F82642FF5D00D3C4A4 /* FridgeChecker2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FridgeChecker2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E029E7FB2642FF5D00D3C4A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E029E7FD2642FF5D00D3C4A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,7 +29,7 @@
 		E029E8042642FF5E00D3C4A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E029E8072642FF5E00D3C4A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E029E8092642FF5E00D3C4A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E029E8102643079500D3C4A4 /* Vegets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vegets.swift; sourceTree = "<group>"; };
+		E029E8102643079500D3C4A4 /* json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json.swift; sourceTree = "<group>"; };
 		E029E813264308DF00D3C4A4 /* VegetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetTableViewCell.swift; sourceTree = "<group>"; };
 		E05150B726B50FC90070232E /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = test.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E0B4197F26B5130900471B93 /* json_parse_tutorial.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = json_parse_tutorial.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -76,12 +79,13 @@
 				E029E7FD2642FF5D00D3C4A4 /* SceneDelegate.swift */,
 				E029E7FF2642FF5D00D3C4A4 /* ViewController.swift */,
 				E029E8012642FF5D00D3C4A4 /* Main.storyboard */,
-				E029E8102643079500D3C4A4 /* Vegets.swift */,
+				E029E8102643079500D3C4A4 /* json.swift */,
 				E029E8042642FF5E00D3C4A4 /* Assets.xcassets */,
 				E029E8062642FF5E00D3C4A4 /* LaunchScreen.storyboard */,
 				E029E8092642FF5E00D3C4A4 /* Info.plist */,
 				E029E813264308DF00D3C4A4 /* VegetTableViewCell.swift */,
 				E05150B726B50FC90070232E /* test.playground */,
+				E003043226F4272500460057 /* TransformInputDate.swift */,
 			);
 			path = FridgeChecker2;
 			sourceTree = "<group>";
@@ -91,6 +95,7 @@
 			children = (
 				E0B4197F26B5130900471B93 /* json_parse_tutorial.playground */,
 				E0B4198626B52D0400471B93 /* url_session_tutorial.playground */,
+				E003043526F42AF500460057 /* stringtest.playground */,
 			);
 			path = tutorials;
 			sourceTree = "<group>";
@@ -166,7 +171,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E029E8002642FF5D00D3C4A4 /* ViewController.swift in Sources */,
-				E029E8112643079500D3C4A4 /* Vegets.swift in Sources */,
+				E003043326F4272500460057 /* TransformInputDate.swift in Sources */,
+				E029E8112643079500D3C4A4 /* json.swift in Sources */,
 				E029E814264308DF00D3C4A4 /* VegetTableViewCell.swift in Sources */,
 				E029E7FC2642FF5D00D3C4A4 /* AppDelegate.swift in Sources */,
 				E029E7FE2642FF5D00D3C4A4 /* SceneDelegate.swift in Sources */,
